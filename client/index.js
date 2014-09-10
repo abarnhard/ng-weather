@@ -1,17 +1,19 @@
 (function(){
   'use strict';
 
-  angular.module('mean-template', [])
-  .controller('MainController', ['$scope', '$interval', function($scope, $interval){
-    var occupations = ['Superheroes', 'Ninjas', 'Pirates', 'Vampires', 'Aliens', 'Dragons', 'Sharks with Lasers', 'Transformers', 'I am Groot'];
+  angular.module('weather', ['ngRoute'])
+  .config(['$routeProvider', function($routeProvider){
+    $routeProvider
+    .when('/conditions', {templateUrl:'/views/conditions/conditions.html', controller:'ConditionsController'})
+    .when('/webcams', {templateUrl:'/views/webcams/webcams.html', controller:'WebcamsController'})
+    .when('/forecast', {templateUrl:'/views/forecast/forecast.html', controller:'ForecastController'})
+    .otherwise({redirectTo:'/conditions'});
+  }])
+  .controller('MainController', ['$scope', function($scope){
+    $scope.title = 'Weather For Life!!!';
 
-    $scope.title = 'Mean Template';
-    $scope.occupation = occupations[0];
 
-    $interval(function(){
-      var rnd = Math.floor(Math.random() * occupations.length);
-      $scope.occupation = occupations[rnd];
-    }, 500);
+
   }]);
 })();
 

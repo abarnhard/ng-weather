@@ -1,0 +1,22 @@
+.panel
+  .panel-body
+    h5 {{title}}
+    .row
+      .col-xs-4
+        form(role='form', novalidate, name='zipForm')
+          .form-group
+            label Zip Code
+            input.form-control#zip(ng-pattern='/^[0-9]{5}$/', required, ng-model='zip', type='text', name='zip')
+          button.btn.btn-primary(type='submit', ng-show='zipForm.$valid', ng-click='checkWeather()') Get Current Conditions
+      .col-xs-4
+        .row
+          .col-xs-4
+            h5 Temp
+            span {{temp}}
+          .col-xs-1
+            .icon(style='background-image:url("{{iconUrl}}")')
+          .col-xs-7
+            p {{nowCast}}
+      .col-xs-4
+
+
